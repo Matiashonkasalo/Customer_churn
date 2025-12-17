@@ -9,4 +9,9 @@ python-dotenv
 joblib
 great-expectations
 pytest
-
+ipykernel
+seaborn
+statsmodels
+xgboost
+optuna
+gradio

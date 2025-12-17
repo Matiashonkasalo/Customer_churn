@@ -4,4 +4,6 @@ __pycache__/
 *.pyc
 mlruns/
 src/.DS_Store
-
+data/raw
+notebooks
+tests
