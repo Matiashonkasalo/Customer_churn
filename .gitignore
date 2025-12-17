@@ -7,3 +7,4 @@ src/.DS_Store
 data/raw
 notebooks
 tests
+mlflow.db

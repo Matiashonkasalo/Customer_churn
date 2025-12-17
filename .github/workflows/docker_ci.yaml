@@ -22,6 +22,22 @@ jobs:
         with:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
+      - name: Check DockerHub secrets
+        run: |
+          if [ -z "${{ secrets.DOCKERHUB_USERNAME }}" ]; then
+            echo " DOCKERHUB_USERNAME is NOT available"
+            exit 1
+          else
+            echo "DOCKERHUB_USERNAME is available"
+          fi
+
+          if [ -z "${{ secrets.DOCKERHUB_TOKEN }}" ]; then
+            echo " DOCKERHUB_TOKEN is NOT available"
+            exit 1
+          else
+            echo " DOCKERHUB_TOKEN is available"
+          fi
+
 
       - name: Build and push Docker image
         uses: docker/build-push-action@v5

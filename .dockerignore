@@ -9,3 +9,4 @@ notebooks
 mlruns
 data/raw
 tests
+mlflow.db
