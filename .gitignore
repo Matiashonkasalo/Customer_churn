@@ -5,6 +5,9 @@ __pycache__/
 mlruns/
 src/.DS_Store
 data/raw
-notebooks
 tests
 mlflow.db
+.terraform/
+*.tfstate
+*.tfstate.backup
+

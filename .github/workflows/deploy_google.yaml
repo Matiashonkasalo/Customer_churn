@@ -1,0 +1,60 @@
+name: Build and Deploy to Cloud Run
+
+on:
+  push:
+    branches: [ "main" ]
+
+env:
+  PROJECT_ID: ${{ secrets.GCP_PROJECT_ID }}
+  REGION: europe-north1
+  REPO: churn-repo
+  IMAGE_NAME: churn-project
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    # 1️ Checkout code
+    - name: Checkout
+      uses: actions/checkout@v4
+
+    # 2️ Authenticate to GCP
+    - name: Authenticate to Google Cloud
+      uses: google-github-actions/auth@v2
+      with:
+        credentials_json: ${{ secrets.GCP_SA_KEY }}
+
+    # 3️ Setup gcloud
+    - name: Setup gcloud
+      uses: google-github-actions/setup-gcloud@v2
+
+    # 4️ Configure Docker for Artifact Registry
+    - name: Configure Docker
+      run: |
+        gcloud auth configure-docker $REGION-docker.pkg.dev --quiet
+
+    # 5️ Build & push Docker image (repo root)
+    - name: Build and Push Docker image
+      run: |
+        IMAGE_URI=$REGION-docker.pkg.dev/$PROJECT_ID/$REPO/$IMAGE_NAME
+        docker buildx build \
+          --platform linux/amd64 \
+          --provenance=false \
+          -t $IMAGE_URI:${{ github.sha }} \
+          --push .
+
+    # 6 Terraform Init 
+    - name: Terraform Init
+      working-directory: Terraform
+      run: terraform init
+
+    # 7️ Terraform Apply 
+    - name: Terraform Apply
+      working-directory: Terraform
+      run: |
+        IMAGE_URI=$REGION-docker.pkg.dev/$PROJECT_ID/$REPO/$IMAGE_NAME
+        terraform apply -auto-approve \
+          -var="project_id=$PROJECT_ID" \
+          -var="region=$REGION" \
+          -var="docker_image=$IMAGE_URI:${{ github.sha }}"
