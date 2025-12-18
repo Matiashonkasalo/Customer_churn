@@ -97,7 +97,7 @@ Binary classification to predict whether a customer will churn (leave the servic
 └─────────────────┘
 ```
 
-## 🛠️ Technology Stack
+## Technology Stack
 
 ### ML & Data Science
 - **scikit-learn**: Model training and preprocessing
@@ -118,143 +118,43 @@ Binary classification to predict whether a customer will churn (leave the servic
 - **Google Cloud Run**: Serverless container platform
 - **Google Container Registry**: Docker image storage
 
-## 📁 Project Structure
+## Project Structure
 
-```
+```text
 .
-├── data/
-│   ├── raw/                  # Original dataset
-│   └── processed/            # Cleaned and transformed data
+├── Dockerfile                  # Container definition
+├── README.md
+├── Terraform/                  # Infrastructure as Code (GCP)
+│   ├── main.tf
+│   ├── variables.tf
+│   ├── outputs.tf
+│   └── versions.tf
+│
+├── data/                       # Local datasets
+│   ├── raw/
+│   │   └── WA_Fn-UseC_-Telco-Customer-Churn.csv
+│   ├── processed/
+│   └── external/
+│
 ├── notebooks/
-│   └── exploration.ipynb     # EDA and experimentation
+│   └── EDA.ipynb               # Exploratory data analysis
+│
+├── scripts/
+│   ├── pipeline.py             # training pipeline
+│   └── test.py
+│
 ├── src/
-│   ├── data/
-│   │   ├── preprocessing.py  # Data cleaning
-│   │   └── validation.py     # Schema validation
-│   ├── models/
-│   │   ├── train.py          # Training pipeline
-│   │   └── evaluate.py       # Model evaluation
-│   ├── api/
-│   │   ├── main.py           # FastAPI application
-│   │   ├── schemas.py        # Pydantic models
-│   │   └── predict.py        # Inference logic
-│   └── ui/
-│       └── gradio_app.py     # Interactive interface
-├── terraform/
-│   ├── main.tf               # Cloud Run configuration
-│   ├── variables.tf          # Input variables
-│   └── outputs.tf            # Service endpoints
-├── Dockerfile                # Container definition
-├── requirements.txt          # Python dependencies
-└── README.md
+│   └── churn_project_folder/
+│       ├── data/               # Data loading & preprocessing
+│       ├── features/           # Feature engineering & schema
+│       ├── models/             # Training, tuning, evaluation
+│       ├── serving/            # FastAPI + Gradio app
+│       └── utils/              # Validation utilities
+│
+├── requirements.txt
+├── pyproject.toml
+└── tests/ 
 ```
-
-## 🚦 Getting Started
-
-### Prerequisites
-
-- Python 3.9+
-- Docker
-- Google Cloud SDK (for deployment)
-- Terraform (for infrastructure)
-
-### Local Development
-
-1. **Clone the repository**
-   ```bash
-   git clone <repository-url>
-   cd customer-churn-prediction
-   ```
-
-2. **Create virtual environment**
-   ```bash
-   python -m venv venv
-   source venv/bin/activate  # On Windows: venv\Scripts\activate
-   ```
-
-3. **Install dependencies**
-   ```bash
-   pip install -r requirements.txt
-   ```
-
-4. **Train the model**
-   ```bash
-   python src/models/train.py
-   ```
-
-5. **Run API locally**
-   ```bash
-   uvicorn src.api.main:app --reload
-   ```
-
-6. **Access the application**
-   - API: http://localhost:8000
-   - Swagger docs: http://localhost:8000/docs
-   - Gradio UI: http://localhost:8000/ui
-
-### Docker Deployment
-
-```bash
-# Build image
-docker build -t churn-prediction:latest .
-
-# Run container
-docker run -p 8000:8000 churn-prediction:latest
-```
-
-### Cloud Deployment
-
-1. **Configure GCP credentials**
-   ```bash
-   gcloud auth application-default login
-   ```
-
-2. **Initialize Terraform**
-   ```bash
-   cd terraform
-   terraform init
-   ```
-
-3. **Deploy infrastructure**
-   ```bash
-   terraform plan
-   terraform apply
-   ```
-
-## 📝 API Usage
-
-### Prediction Endpoint
-
-**POST** `/predict`
-
-```bash
-curl -X POST "https://your-service-url/predict" \
-  -H "Content-Type: application/json" \
-  -d '{
-    "tenure": 12,
-    "MonthlyCharges": 70.5,
-    "TotalCharges": 846.0,
-    "Contract": "Month-to-month",
-    "InternetService": "Fiber optic",
-    "PaymentMethod": "Electronic check"
-  }'
-```
-
-**Response:**
-```json
-{
-  "churn_probability": 0.68,
-  "prediction": "Yes",
-  "confidence": "Medium",
-  "model_version": "v1.2.0"
-}
-```
-
-### Batch Prediction
-
-**POST** `/predict/batch`
-
-For processing multiple customers at once.
 
 ## CI/CD Workflow
 
