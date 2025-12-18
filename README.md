@@ -25,9 +25,9 @@ This repository showcases a complete ML system that goes beyond model training t
 **Note:** The service runs on Google Cloud Platform free tier and may not always be available.
 
 When active:
-- **Interactive UI (Gradio):
+- Interactive UI (Gradio):
 https://churn-api-tom7u2wlba-lz.a.run.app/ui
-- **API Documentation (Swagger UI): 
+- API Documentation (Swagger UI): 
 https://churn-api-tom7u2wlba-lz.a.run.app/docs
 
 ## Machine Learning Approach
