@@ -20,14 +20,15 @@ This repository showcases a complete ML system that goes beyond model training t
 - **Infrastructure as Code** using Terraform for reproducible deployments
 - **Cloud-Native Architecture** running on Google Cloud Run for scalability
 
-## Live Deployment
+## Live Deployment (Demo)
 
 **Note:** The service runs on Google Cloud Platform free tier and may not always be available.
 
 When active:
-- **Interactive UI**: `[your-service-url]/ui`
-- **API Documentation**: `[your-service-url]/docs`
-- **Health Check**: `[your-service-url]/health`
+** Interactive UI (Gradio):
+https://churn-api-tom7u2wlba-lz.a.run.app/ui
+** API Documentation (Swagger UI): 
+https://churn-api-tom7u2wlba-lz.a.run.app/docs
 
 ## Machine Learning Approach
 
