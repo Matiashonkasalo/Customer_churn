@@ -7,7 +7,7 @@ A production-ready machine learning system for predicting customer churn, deploy
 [![Docker](https://img.shields.io/badge/docker-%230db7ed.svg)](https://www.docker.com/)
 [![Terraform](https://img.shields.io/badge/terraform-%235835CC.svg)](https://www.terraform.io/)
 
-## 🎯 Project Overview
+## Project Overview
 
 This repository showcases a complete ML system that goes beyond model training to address real-world deployment challenges. The focus is on **production readiness, reliability, and maintainability** rather than just model accuracy.
 
@@ -20,7 +20,7 @@ This repository showcases a complete ML system that goes beyond model training t
 - **Infrastructure as Code** using Terraform for reproducible deployments
 - **Cloud-Native Architecture** running on Google Cloud Run for scalability
 
-## 🚀 Live Deployment
+## Live Deployment
 
 **Note:** The service runs on Google Cloud Platform free tier and may not always be available.
 
@@ -29,7 +29,7 @@ When active:
 - **API Documentation**: `[your-service-url]/docs`
 - **Health Check**: `[your-service-url]/health`
 
-## 📊 Machine Learning Approach
+## Machine Learning Approach
 
 ### Problem Statement
 Binary classification to predict whether a customer will churn (leave the service).
@@ -63,7 +63,7 @@ Binary classification to predict whether a customer will churn (leave the servic
 - **Accuracy**: Overall correctness
 - **Confusion Matrix**: Detailed error analysis
 
-## 🏗️ Architecture
+## Architecture
 
 ```
 ┌─────────────────┐
@@ -255,7 +255,7 @@ curl -X POST "https://your-service-url/predict" \
 
 For processing multiple customers at once.
 
-## 🔄 CI/CD Workflow
+## CI/CD Workflow
 
 The deployment pipeline follows MLOps best practices:
 
@@ -273,73 +273,12 @@ Cloud Run Deployment
 Health Check & Validation
 ```
 
-**Benefits:**
-- Immutable deployments
-- Reproducible infrastructure
-- Automated testing
-- Zero-downtime releases
-- Rollback capability
 
-## 🧪 Model Performance
+## Dateset 
 
-| Model | ROC-AUC | Precision | Recall | Accuracy |
-|-------|---------|-----------|--------|----------|
-| Logistic Regression | 0.82 | 0.68 | 0.71 | 0.79 |
-| Random Forest | 0.86 | 0.73 | 0.75 | 0.82 |
-| **XGBoost** | **0.89** | **0.77** | **0.79** | **0.85** |
-
-*Note: Metrics shown are from validation set. See MLflow for detailed experiment tracking.*
-
-## 🔐 Security Considerations
-
-- Input validation using Pydantic schemas
-- Rate limiting on API endpoints
-- HTTPS enforcement in production
-- No sensitive data logged
-- Environment-based configuration
-
-## 📈 Future Enhancements
-
-- [ ] Model retraining pipeline with drift detection
-- [ ] A/B testing framework for model comparison
-- [ ] Feature store integration
-- [ ] Monitoring dashboard (Prometheus + Grafana)
-- [ ] Automated model versioning and registry
-- [ ] Multi-cloud deployment support
-
-## 🤝 Contributing
-
-Contributions are welcome! Please:
-
-1. Fork the repository
-2. Create a feature branch (`git checkout -b feature/amazing-feature`)
-3. Commit changes (`git commit -m 'Add amazing feature'`)
-4. Push to branch (`git push origin feature/amazing-feature`)
-5. Open a Pull Request
-
-## 📄 License
-
-This project is licensed under the MIT License - see the LICENSE file for details.
-
-## 👏 Acknowledgments
-
-- Dataset: [Telco Customer Churn](https://www.kaggle.com/datasets/blastchar/telco-customer-churn) from Kaggle
-- FastAPI documentation and community
-- MLflow and Optuna teams
-
-## 📧 Contact
-
-For questions or feedback, please open an issue or reach out at [your-email@example.com]
-
----
-
-**Built with ❤️ focusing on production ML systems and MLOps best practices**
+- [Telco Customer Churn](https://www.kaggle.com/datasets/blastchar/telco-customer-churn) from Kaggle
 
 
-The API is deployed on Google Cloud Run. Due to free-tier limitations, the service may not always be running.
 
-If available:
 
-Interactive UI: /ui
-API documentation (Swagger): /docs
 
