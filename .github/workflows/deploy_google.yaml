@@ -43,13 +43,20 @@ jobs:
           --provenance=false \
           -t $IMAGE_URI:${{ github.sha }} \
           --push .
+    
+    # 6 Install Terraform
+    - name: Setup Terraform
+      uses: hashicorp/setup-terraform@v3
+      with:
+        terraform_version: 1.5.0
 
-    # 6 Terraform Init 
+
+    # 7 Terraform Init 
     - name: Terraform Init
       working-directory: Terraform
       run: terraform init
 
-    # 7️ Terraform Apply 
+    # 8 Terraform Apply 
     - name: Terraform Apply
       working-directory: Terraform
       run: |
