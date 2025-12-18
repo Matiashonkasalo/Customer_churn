@@ -175,7 +175,7 @@ Health Check & Validation
 ```
 
 
-## Dateset 
+## Dataset 
 
 - [Telco Customer Churn](https://www.kaggle.com/datasets/blastchar/telco-customer-churn) from Kaggle
 
